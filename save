@@ -1,0 +1,483 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct ENDERECO{
+    char cidade[50];
+    char bairro[50];
+    char rua[50];
+    char cep[15];
+    int numero;
+}T_ENDERECO;
+
+typedef struct CASA{
+    char anuncio[200];
+    T_ENDERECO endereco;
+    int pavimentos;
+    int quarto;
+    double area;
+    double valorTT;
+    int contagem;
+}T_CASA;
+
+typedef struct APARTAMENTO{
+    char anuncio[200];
+    T_ENDERECO endereco;
+    char possicao[100];
+    int andar;
+    int pavimentos;
+    int quarto;
+    int vagas;
+    double area;
+    double valorcnd;
+    double valorTT;
+    int contagem;
+}T_APTO;
+
+typedef struct TERRENO{
+    char anuncio[200];
+    T_ENDERECO endereco;
+    double area;
+    double valorTT;
+    int contagem;
+}T_TERRENO;
+
+void printacasas(int k,T_CASA casa[]){
+    int i;
+
+    for(i = 0; i < k; i++ ){
+        puts("=======================================");
+        printf("ANUNCIO : %s\n", casa[i].anuncio);
+        printf("CIDADE : %s\n", casa[i].endereco.cidade);
+        printf("BAIRRO : %s\n", casa[i].endereco.bairro);
+        printf("RUA : %s\n", casa[i].endereco.rua);
+        printf("CEP : %s\n", casa[i].endereco.cep);
+        printf("NUMERO : %d\n", casa[i].endereco.numero);
+        printf("PAVIMENTOS : %d\n", casa[i].pavimentos);
+        printf("QUARTOS : %d\n", casa[i].quarto);
+        printf("AREA EM M² : %lf\n", casa[i].area);
+        printf("VALOR : %lf\n\n\n", casa[i].valorTT);
+        puts("=======================================");
+        
+    }
+}
+void printaaptm(int k, T_APTO aptm[]){
+    int i;
+
+    for(i = 0; i < k; i++ ){
+        puts("=======================================");
+        printf("ANUNCIO : %s\n", aptm[i].anuncio);
+        printf("CIDADE : %s\n", aptm[i].endereco.cidade);
+        printf("BAIRRO : %s\n", aptm[i].endereco.bairro);
+        printf("RUA : %s\n", aptm[i].endereco.rua);
+        printf("CEP : %s\n", aptm[i].endereco.cep);
+        printf("NUMERO : %d\n", aptm[i].endereco.numero);
+        printf("PAVIMENTOS : %d\n", aptm[i].pavimentos);
+        printf("QUARTOS : %d\n", aptm[i].quarto);
+        printf("AREA EM M²: %lf\n", aptm[i].area);
+        printf("VALOR : %lf\n", aptm[i].valorTT);
+        printf("VALOR DO CONDOMINIO: %lf\n", aptm[i].valorcnd);
+        printf("VAGAS NA GARAGEM: %d\n", aptm[i].vagas);
+        printf("POSSICAO: %s\n", aptm[i].possicao);
+        printf("ANDAR: %d\n\n", aptm[i].andar);
+        puts("=======================================");
+        
+    }
+}
+void printaterreno(int k,T_TERRENO terr[]){
+    int i;
+
+    for(i = 0; i < k; i++ ){
+        puts("=======================================");
+        printf("ANUNCIO : %s\n", terr[i].anuncio);
+        printf("CIDADE : %s\n", terr[i].endereco.cidade);
+        printf("BAIRRO : %s\n", terr[i].endereco.bairro);
+        printf("RUA : %s\n", terr[i].endereco.rua);
+        printf("CEP : %s\n", terr[i].endereco.cep);
+        printf("NUMERO : %d\n", terr[i].endereco.numero); 
+        printf("AREA EM M² : %lf\n", terr[i].area);
+        printf("VALOR : %lf\n\n\n", terr[i].valorTT);
+        puts("=======================================");
+        
+    }
+
+}
+void printavalor(int valor, T_CASA casa[],T_TERRENO terr[], T_APTO aptm[]){
+    int i;
+    for(i = 0; i < casa[0].contagem; i++){
+        if(casa[i].valorTT <= valor){
+        puts("=======================================");
+        printf("ANUNCIO : %s\n", casa[i].anuncio);
+        printf("CIDADE : %s\n", casa[i].endereco.cidade);
+        printf("BAIRRO : %s\n", casa[i].endereco.bairro);
+        printf("RUA : %s\n", casa[i].endereco.rua);
+        printf("CEP : %s\n", casa[i].endereco.cep);
+        printf("NUMERO : %d\n", casa[i].endereco.numero);
+        printf("PAVIMENTOS : %d\n", casa[i].pavimentos);
+        printf("QUARTOS : %d\n", casa[i].quarto);
+        printf("AREA EM M² : %lf\n", casa[i].area);
+        printf("VALOR : %lf\n\n\n", casa[i].valorTT);
+        puts("=======================================");
+            
+        }
+    }
+
+    for(i = 0; i < aptm[0].contagem; i++){
+        if(aptm[i].valorTT <= valor){
+             puts("=======================================");
+        printf("ANUNCIO : %s\n", aptm[i].anuncio);
+        printf("CIDADE : %s\n", aptm[i].endereco.cidade);
+        printf("BAIRRO : %s\n", aptm[i].endereco.bairro);
+        printf("RUA : %s\n", aptm[i].endereco.rua);
+        printf("CEP : %s\n", aptm[i].endereco.cep);
+        printf("NUMERO : %d\n", aptm[i].endereco.numero);
+        printf("PAVIMENTOS : %d\n", aptm[i].pavimentos);
+        printf("QUARTOS : %d\n", aptm[i].quarto);
+        printf("AREA EM M²: %lf\n", aptm[i].area);
+        printf("VALOR : %lf\n", aptm[i].valorTT);
+        printf("VALOR DO CONDOMINIO: %lf\n", aptm[i].valorcnd);
+        printf("VAGAS NA GARAGEM: %d\n", aptm[i].vagas);
+        printf("POSSICAO: %s\n", aptm[i].possicao);
+        printf("ANDAR: %d\n\n", aptm[i].andar);
+        puts("=======================================");
+
+        }
+    }
+    for(i = 0; i < terr[0].contagem; i++){
+        if(terr[i].valorTT <= valor){
+            puts("=======================================");
+        printf("ANUNCIO : %s\n", terr[i].anuncio);
+        printf("CIDADE : %s\n", terr[i].endereco.cidade);
+        printf("BAIRRO : %s\n", terr[i].endereco.bairro);
+        printf("RUA : %s\n", terr[i].endereco.rua);
+        printf("CEP : %s\n", terr[i].endereco.cep);
+        printf("NUMERO : %d\n", terr[i].endereco.numero); 
+        printf("AREA EM M² : %lf\n", terr[i].area);
+        printf("VALOR : %lf\n\n\n", terr[i].valorTT);
+        puts("=======================================");
+
+        }
+    }
+}
+void printabairro(char bairros, T_CASA casa[],T_TERRENO terr[], T_APTO aptm[]){
+    int i;
+    for(i = 0; i < casa[0].contagem; i++){
+        if(casa[i].endereco.bairro == bairros){
+        puts("=======================================");
+        printf("ANUNCIO : %s\n", casa[i].anuncio);
+        printf("CIDADE : %s\n", casa[i].endereco.cidade);
+        printf("BAIRRO : %s\n", casa[i].endereco.bairro);
+        printf("RUA : %s\n", casa[i].endereco.rua);
+        printf("CEP : %s\n", casa[i].endereco.cep);
+        printf("NUMERO : %d\n", casa[i].endereco.numero);
+        printf("PAVIMENTOS : %d\n", casa[i].pavimentos);
+        printf("QUARTOS : %d\n", casa[i].quarto);
+        printf("AREA EM M² : %lf\n", casa[i].area);
+        printf("VALOR : %lf\n\n\n", casa[i].valorTT);
+        puts("=======================================");
+            
+        }
+    }
+
+    for(i = 0; i < aptm[0].contagem; i++){
+        if(aptm[i].endereco.bairro == bairros){
+             puts("=======================================");
+        printf("ANUNCIO : %s\n", aptm[i].anuncio);
+        printf("CIDADE : %s\n", aptm[i].endereco.cidade);
+        printf("BAIRRO : %s\n", aptm[i].endereco.bairro);
+        printf("RUA : %s\n", aptm[i].endereco.rua);
+        printf("CEP : %s\n", aptm[i].endereco.cep);
+        printf("NUMERO : %d\n", aptm[i].endereco.numero);
+        printf("PAVIMENTOS : %d\n", aptm[i].pavimentos);
+        printf("QUARTOS : %d\n", aptm[i].quarto);
+        printf("AREA EM M²: %lf\n", aptm[i].area);
+        printf("VALOR : %lf\n", aptm[i].valorTT);
+        printf("VALOR DO CONDOMINIO: %lf\n", aptm[i].valorcnd);
+        printf("VAGAS NA GARAGEM: %d\n", aptm[i].vagas);
+        printf("POSSICAO: %s\n", aptm[i].possicao);
+        printf("ANDAR: %d\n\n", aptm[i].andar);
+        puts("=======================================");
+
+        }
+    }
+    for(i = 0; i < terr[0].contagem; i++){
+        if(terr[i].endereco.bairro == bairros){
+            puts("=======================================");
+        printf("ANUNCIO : %s\n", terr[i].anuncio);
+        printf("CIDADE : %s\n", terr[i].endereco.cidade);
+        printf("BAIRRO : %s\n", terr[i].endereco.bairro);
+        printf("RUA : %s\n", terr[i].endereco.rua);
+        printf("CEP : %s\n", terr[i].endereco.cep);
+        printf("NUMERO : %d\n", terr[i].endereco.numero); 
+        printf("AREA EM M² : %lf\n", terr[i].area);
+        printf("VALOR : %lf\n\n\n", terr[i].valorTT);
+        puts("=======================================");
+
+        }
+    }
+}
+
+
+
+
+
+
+void MENUPRIN(){
+    puts("==============================================");
+    puts("                  BEM VINDO              ");
+    puts("             SELECIONE UMA OPCAO\n\n         ");
+    puts("        CADASTRA IMOVEL   DIGITE 1 \n     ");
+    puts("        PROCURAR IMOVEL   DIGITE 2   \n    ");
+    puts("        REMOVER IMOVEL    DIGITE 3     \n  ");
+    puts("        EDITAR  IMOVEL    DIGITE 4     \n  ");
+    puts("==============================================");
+}
+void MENUBUSCAIMOVEL(){
+    puts("==============================================");
+    puts("              ESCOLHA UMA OPCAO\n\n");
+    puts("         VER TODOS OS IMOVEIS    DIGITE 1\n  ");
+    puts("      BUSCA IMOVEL POR TITULO    DIGITE 2\n  ");
+    puts("      BUSCA IMOVEL POR BAIRRO    DIGITE 3\n  ");
+    puts("      BUSCA IMOVEL POR VALOR     DIGITE 4\n\n  ");
+    puts("    VOLTAR PARA O MENU PRINCIPAL DIGITE 9\n");
+    puts("==============================================");
+}
+void MENUVERTODOS(){
+    puts("==============================================");
+    puts("               ESCOLHA UMA OPCAO\n\n");
+    puts("  VER TODOS OS IMOVEIS DISPONIVEIS  DIGITE 1\n  ");
+    puts("  VER TODAS AS CASAS                DIGITE 2\n  ");
+    puts("  VER TODOS OS TERRENOS             DIGITE 3\n  ");
+    puts("  VER TODOS OS APARTAMENTOS         DIGITE 4\n\n  ");
+    puts("  VOLTAR PARA O MENU PRINCIPAL      DIGITE 9\n");
+    puts("==============================================");
+
+}
+void CADASTRAIMOV(){
+    puts("==============================================");
+    puts("        QUAL IMOVEL DESEJA CADASTRAR?\n\n");
+    puts("     CADASTRAR CASA                 DIGITE 1\n");
+    puts("     CADASTRAR APARTAMENTO          DIGITE 2\n");
+    puts("     CADASTRAR TERRENO              DIGITE 3\n\n");
+    puts("  VOLTAR PARA O MENU PRINCIPAL      DIGITE 9\n");
+    puts("==============================================");
+}
+void REMOVERIMOV(){
+    puts("==============================================");
+    puts("        QUAL IMOVEL DESEJA REMOVER?\n\n");
+    puts("     REMOVER CASA                 DIGITE 1\n");
+    puts("     REMOVER APARTAMENTO          DIGITE 2\n");
+    puts("     REMOVER TERRENO              DIGITE 3\n\n");
+    puts("  VOLTAR PARA O MENU PRINCIPAL    DIGITE 9\n");
+    puts("==============================================");
+
+}
+
+
+
+int main(){
+    system("clear");
+
+   T_TERRENO terr[100];
+   T_APTO aptm[100];
+   T_CASA casa[100];
+   casa[0].contagem = 0;
+   aptm[0].contagem = 0;
+   terr[0].contagem = 0;
+    int i,j,k,cntg=0,saida,menu, valor;
+    char save,bairro[50];
+    do{
+    
+    MENUPRIN();
+    scanf("%d", &menu);
+
+
+    
+    if(menu == 2){
+        system("clear");
+        MENUBUSCAIMOVEL();
+        scanf("%d", &j);
+        if(j == 1){
+            system("clear");
+            MENUVERTODOS();
+            scanf("%d", &k);
+            if(k == 2){
+                k = 0;
+                system("clear");
+                printacasas(casa[0].contagem, casa);
+                puts("DIGITE 9 PARA SAIR");
+                scanf("%s", &save);
+                
+                    
+                
+            }else if(k == 4){
+                k = 0;
+                system("clear");
+                printaaptm(aptm[0].contagem, aptm);
+                puts("DIGITE 9 PARA SAIR");
+                scanf("%s", &save);
+             
+                
+             
+            }else if(k == 3){
+                k = 0;
+                system("clear");
+                printaterreno(terr[0].contagem, terr);
+                puts("DIGITE 9 PARA SAIR");
+                scanf("%c", &save);
+             
+                
+             
+            }else if(k == 1){
+                system("clear");
+                puts("CASA :");
+                printacasas(casa[0].contagem, casa);
+                puts("APARTAMENTOS:");
+                printaaptm(aptm[0].contagem, aptm);
+                puts("TERRENOS");
+                printaterreno(terr[0].contagem, terr);
+                puts("DIGITE ALGO PARA CONTINUAR");
+                scanf("%*c%c", &save);
+                system("clear");
+                
+            
+        }
+        }else if(j == 4){
+            system("clear");
+            printf("DIGITE O VALOR MAXIMO: ");
+            scanf("%d", &valor);
+            system("clear");
+            printavalor(valor,casa,terr,aptm);
+            puts("DIGITE ALGO PARA CONTINUAR");
+                scanf("%*c%c", &save);
+                system("clear");
+        }else if(j == 3){
+            system("clear");
+            printf("\nDIGITE O BAIRRO: ");
+            scanf("%*c", &save);
+            fgets(bairro, 50, stdin);
+            //system("clear");
+            printabairro(bairro,casa,terr,aptm);
+            puts("DIGITE ALGO PARA CONTINUAR");
+                scanf("%*c%c", &save);
+                system("clear");
+            
+        }
+        
+    }else if(menu == 1){
+        system("clear");
+        CADASTRAIMOV();
+        scanf("%d%*c", &j);
+
+            if(j == 1){
+                system("clear");
+                printf("Digite o anuncio da casa: ");
+                fgets(casa[casa[0].contagem].anuncio, 200, stdin);
+                printf("Cidade:");
+                fgets(casa[casa[0].contagem].endereco.cidade, 50, stdin);
+                printf("Bairro: ");
+                fgets(casa[casa[0].contagem].endereco.bairro, 50 , stdin);
+                printf("Rua: ");
+                fgets(casa[casa[0].contagem].endereco.rua, 50, stdin);
+                printf("CEP: ");
+                fgets(casa[casa[0].contagem].endereco.cep, 15, stdin);
+                printf("NUMERO DA CASA: ");
+                scanf("%d", &casa[casa[0].contagem].endereco.numero);
+                printf("NUMERO DE PAVIMENTOS: ");
+                scanf("%d", &casa[casa[0].contagem].pavimentos);
+                printf("NUMERO DE QUARTOS: ");
+                scanf("%d", &casa[casa[0].contagem].quarto);
+                printf("AREA DA CASA EM M²: ");
+                scanf("%lf", &casa[casa[0].contagem].area);
+                printf("VALOR TOTAL DA CASA: ");
+                scanf("%lf", &casa[casa[0].contagem].valorTT);
+            
+                cntg++;
+                casa[0].contagem++;
+                puts("CASA SALVO COM SUCESSO, DIGITE ALGO PARA SAIR");
+                scanf("%c", &save);
+                system("clear");
+
+            }else if(j == 2){
+                system("clear");
+                printf("Digite o anuncio do Apartamento: ");
+                fgets(aptm[aptm[0].contagem].anuncio, 200, stdin);
+                printf("Cidade:");
+                fgets(aptm[aptm[0].contagem].endereco.cidade, 50, stdin);
+                printf("Bairro: ");
+                fgets(aptm[aptm[0].contagem].endereco.bairro, 50 , stdin);
+                printf("Rua: ");
+                fgets(aptm[aptm[0].contagem].endereco.rua, 50, stdin);
+                printf("CEP: ");
+                fgets(aptm[aptm[0].contagem].endereco.cep, 15, stdin);
+                printf("NUMERO DO APARTAMENTO: ");
+                scanf("%d", &aptm[aptm[0].contagem].endereco.numero);
+                printf("NUMERO DE PAVIMENTOS: ");
+                scanf("%d", &aptm[aptm[0].contagem].pavimentos);
+                printf("NUMERO DE QUARTOS: ");
+                scanf("%d", &aptm[aptm[0].contagem].quarto);
+                printf("AREA DO APARTAMENTO EM M²: ");
+                scanf("%lf", &aptm[aptm[0].contagem].area);
+                printf("VALOR TOTAL DO APARTAMENTO: ");
+                scanf("%lf", &aptm[aptm[0].contagem].valorTT);
+                printf("ANDAR DO APARTAMENTO: ");
+                scanf("%d", &aptm[aptm[0].contagem].andar);
+                printf("VAGAS DE GARAGEM: ");
+                scanf("%d", &aptm[aptm[0].contagem].vagas);
+                printf("VALOR DO CONDOMINIO: ");
+                scanf("%lf%*c", &aptm[aptm[0].contagem].valorcnd);
+                printf("DIRECAO DO APARTAMENTO: ");
+                fgets(aptm[aptm[0].contagem].possicao, 100, stdin);
+                aptm[0].contagem++;
+                puts("APARTAMENTO SALVO COM SUCESSO, DIGITE ALGO PARA SAIR");
+                scanf("%c", &save);
+                system("clear");
+            }else if(j == 3){
+                system("clear");
+                printf("Digite o anuncio do terreno: ");
+                fgets(terr[terr[0].contagem].anuncio, 200, stdin);
+                printf("Cidade:");
+                fgets(terr[terr[0].contagem].endereco.cidade, 50, stdin);
+                printf("Bairro: ");
+                fgets(terr[terr[0].contagem].endereco.bairro, 50 , stdin);
+                printf("Rua: ");
+                fgets(terr[terr[0].contagem].endereco.rua, 50, stdin);
+                printf("CEP: ");
+                fgets(terr[terr[0].contagem].endereco.cep, 15, stdin);
+                printf("NUMERO DO TERRENO: ");
+                scanf("%d", &terr[terr[0].contagem].endereco.numero);
+                printf("AREA DO TERRENO EM M²: ");
+                scanf("%lf", &terr[terr[0].contagem].area);
+                printf("VALOR TOTAL DO TERRENO: ");
+                scanf("%lf", &terr[terr[0].contagem].valorTT);
+                terr[0].contagem++;
+                puts("TERRENO SALVO COM SUCESSO, DIGITE ALGO PARA SAIR");
+                scanf("%c", &save);
+                system("clear");
+                
+            }
+
+    }else if(menu == 3){
+        system("clear");
+        REMOVERIMOV();
+        scanf("%d", &j);
+            
+
+    }else if (menu == 4){
+
+    }else if(menu == 5){
+
+    }else if(menu == 9){
+        saida = 9;
+        system("clear");
+    }
+
+    }while(saida != 9);
+    
+    
+
+
+
+    return 0;
+
+
+}
